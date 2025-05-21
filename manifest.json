@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Hide Sponsored Content",
+  "version": "1.0",
+  "description": "Hides sponsored content from Google search results and Amazon",
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.google.com/search*",
+        "*://*.amazon.com/*",
+        "*://*.amazon.co.uk/*",
+        "*://*.amazon.de/*",
+        "*://*.amazon.fr/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+} 
