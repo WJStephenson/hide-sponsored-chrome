@@ -15,16 +15,28 @@ function hideGoogleSponsored() {
 
 // Function to hide Amazon sponsored results
 function hideAmazonSponsored() {
-    // Hide sponsored products
-    const sponsoredProducts = document.querySelectorAll('div[data-component-type="sp-sponsored-result"]');
-    sponsoredProducts.forEach(element => {
-        element.style.display = 'none';
+    // Find all sponsored product containers
+    const sponsoredContainers = document.querySelectorAll('div[data-component-type="sp-sponsored-result"], div[data-component-type="sp-sponsored-carousel"]');
+    
+    // Find all sponsored labels
+    const sponsoredLabels = document.querySelectorAll('span.a-declarative[data-action="a-popover"]');
+    
+    // Hide the containers and their parent elements
+    sponsoredContainers.forEach(container => {
+        // Find the closest parent product container
+        const productContainer = container.closest('div[data-asin]');
+        if (productContainer) {
+            productContainer.style.display = 'none';
+        }
     });
 
-    // Hide sponsored carousel items
-    const sponsoredCarousel = document.querySelectorAll('div[data-component-type="sp-sponsored-carousel"]');
-    sponsoredCarousel.forEach(element => {
-        element.style.display = 'none';
+    // Hide elements with sponsored labels
+    sponsoredLabels.forEach(label => {
+        // Find the closest parent product container
+        const productContainer = label.closest('div[data-asin]');
+        if (productContainer) {
+            productContainer.style.display = 'none';
+        }
     });
 }
 
